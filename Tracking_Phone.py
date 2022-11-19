@@ -1,5 +1,7 @@
 import phonenumbers
 
+import folium
+
 from yourPhoneNumber import number
 
 from phonenumbers import geocoder
@@ -31,5 +33,12 @@ lat = results[0]['geometry']['lat']
 lng = results[0]['geometry']['lng']
 
 print(lat,lng)
+
+myMap = folium.Map(Location=[lat, lng], zoom_start = 9)
+
+folium.Marker([lat, lng], popup=yourLocation).add_to(myMap)
+
+#save map in html file
+myMap.save("myLocation.html")
 
 #CTTO https://www.youtube.com/watch?v=Geisa_ib5hs&t=506s
